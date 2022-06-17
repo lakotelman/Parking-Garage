@@ -16,14 +16,23 @@ class Kiosk:
                 print(f" - {spaces}")
             spotchoice = input("Which space would you like?")
             self.occupied.append(self.available_spaces.pop(self.available_spaces.index(spotchoice)))
+            self.printedticket = GarageTicket()
+            self.printedticket.currentticket["spacetype"] = spotchoice
+            print(f'You got the {self.printedticket.currentticket["spacetype"]} space. Please go park your car.')
             print(self.occupied) #TODO - delete later
             print(self.available_spaces) #TODO - delete later
         else: #(there are no spots available)
             print("There aren't any spots left. Outta luck. Come back later")
 
 
-    def leave_garage(self): 
-        pass
+    def leave_garage(self):
+        for spaces in self.occupied:
+            print(f" - {spaces}")
+        insertticket = input("What spot did you just leave? ")  
+        self.available_spaces.append(insertticket)
+        print(f'You owe {self.printedticket.currentticket["price"]}')
+      
+        
 
     def run(self): 
         start = True 
